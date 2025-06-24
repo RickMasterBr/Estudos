@@ -1,0 +1,193 @@
+/* -------------------
+   Estilos Gerais e Variáveis
+   ------------------- */
+
+/* A regra :root é usada para declarar variáveis CSS globais. Facilita a manutenção das cores! */
+:root {
+    --cor-primaria-senai: #D93237; /* Vermelho oficial do SENAI */
+    --cor-secundaria: #333333;   /* Cinza escuro para textos */
+    --cor-fundo: #f4f4f4;        /* Cinza claro para o fundo */
+    --cor-branco: #ffffff;
+}
+
+/* Reset básico para remover margens e preenchimentos padrão dos navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Faz o cálculo de largura e altura incluir padding e border */
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Fonte que importamos do Google Fonts */
+    background-color: var(--cor-fundo);
+    color: var(--cor-secundaria);
+    line-height: 1.6; /* Melhora a legibilidade */
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto; /* Centraliza o conteúdo principal */
+    padding: 0 20px; /* Adiciona um respiro nas laterais */
+}
+
+/* -------------------
+   Cabeçalho e Navegação
+   ------------------- */
+header {
+    background-color: var(--cor-branco);
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--cor-primaria-senai);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header .container {
+    display: flex; /* Coloca o logo e o menu lado a lado */
+    justify-content: space-between; /* Espaça os itens (logo na esquerda, menu na direita) */
+    align-items: center; /* Alinha verticalmente */
+}
+
+.logo {
+    height: 50px; /* Ajuste a altura do seu logo */
+}
+
+nav ul {
+    list-style: none; /* Remove as bolinhas da lista */
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 25px; /* Espaçamento entre os itens do menu */
+}
+
+nav a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: var(--cor-secundaria);
+    font-weight: 500;
+    transition: color 0.3s ease; /* Efeito suave na mudança de cor */
+}
+
+nav a:hover {
+    color: var(--cor-primaria-senai); /* Muda a cor ao passar o mouse */
+}
+
+/* -------------------
+   Seção Hero (Banner)
+   ------------------- */
+.hero {
+    background-color: var(--cor-primaria-senai);
+    color: var(--cor-branco);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background-color: var(--cor-branco);
+    color: var(--cor-primaria-senai);
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #e0e0e0;
+}
+
+/* -------------------
+   Seção de Cursos
+   ------------------- */
+.cursos {
+    padding: 50px 0;
+}
+
+.cursos h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+
+.cursos-container {
+    display: flex; /* Coloca os cartões lado a lado */
+    justify-content: space-around; /* Distribui o espaço entre eles */
+    gap: 20px; /* Espaço entre os cartões */
+}
+
+.curso-card {
+    background-color: var(--cor-branco);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    flex-basis: 30%; /* Define uma base de largura para cada cartão */
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.curso-card:hover {
+    transform: translateY(-5px); /* Efeito de "levantar" o cartão */
+}
+
+.curso-card h3 {
+    color: var(--cor-primaria-senai);
+    margin-bottom: 15px;
+}
+
+/* -------------------
+   Rodapé
+   ------------------- */
+footer {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+
+/* -------------------------------------
+   MEDIA QUERY - A MÁGICA DA RESPONSIVIDADE
+   ------------------------------------- */
+
+/* Este bloco de código só será aplicado quando a largura da tela for 768 pixels ou menos (tablets e celulares) */
+@media (max-width: 768px) {
+    
+    header .container {
+        flex-direction: column; /* Coloca o logo e o menu um sobre o outro */
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+    
+    nav ul {
+        flex-direction: column; /* Itens do menu um sobre o outro */
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Ajusta o espaçamento para o menu vertical */
+    }
+
+    .cursos-container {
+        flex-direction: column; /* Coloca os cartões um sobre o outro */
+        align-items: center;
+    }
+
+    .curso-card {
+        width: 80%; /* Os cartões ocuparão 80% da largura em telas menores */
+    }
+    
+    .hero h1 {
+        font-size: 2rem; /* Diminui um pouco o título no celular */
+    }
+}

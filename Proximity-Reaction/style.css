@@ -1,0 +1,91 @@
+/* Definições de variáveis e estilos globais */
+:root {
+    --card-glow-color: rgb(100, 200, 255);
+    
+    /* Estas variáveis serão atualizadas pelo JavaScript */
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    --glow-opacity: 0;
+    --card-rotate-x: 0deg;
+    --card-rotate-y: 0deg;
+}
+
+body {
+    background-color: #121212;
+    color: #f0f0f0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    max-width: 900px;
+    padding: 2rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #b3b3b3;
+    line-height: 1.6;
+}
+
+.demo-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 4rem;
+    /* Define o contexto 3D para os elementos filhos */
+    perspective: 1000px;
+}
+
+.proximity-card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 300px;
+    height: 200px;
+    margin: auto;
+    position: relative; /* Essencial para o brilho (glow) */
+
+    /* A transição suave é a chave para a animação */
+    transition: transform 0.1s ease-out, box-shadow 0.2s ease-out;
+    
+    /* Aplica a rotação 3D com base nas variáveis */
+    transform-style: preserve-3d;
+    transform: rotateX(var(--card-rotate-x)) rotateY(var(--card-rotate-y));
+}
+
+/* Efeito de brilho que segue o mouse */
+.proximity-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit; /* Herda o arredondamento do pai */
+    
+    /* Cria um brilho radial que segue a posição do mouse */
+    background: radial-gradient(
+        circle at var(--mouse-x) var(--mouse-y),
+        var(--card-glow-color),
+        transparent 40%
+    );
+    opacity: var(--glow-opacity);
+    transition: opacity 0.2s ease-out;
+}
+
+.card-content {
+    /* Mantém o conteúdo "plano" enquanto o cartão inclina */
+    transform: translateZ(20px);
+}
