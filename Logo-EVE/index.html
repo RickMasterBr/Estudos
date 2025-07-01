@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta de Logo - EVE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: #F2F7F5; /* Branco Gelo */
+            color: #2E2E2E; /* Cinza Grafite */
+        }
+        .logo-svg {
+            height: 6rem;
+            width: auto;
+        }
+        .color-swatch {
+            width: 100%;
+            height: 4rem;
+            border-radius: 0.5rem;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-8 max-w-5xl">
+        
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#004E64]">Proposta de Identidade Visual</h1>
+            <p class="text-lg md:text-xl mt-2 text-[#2E2E2E]">EVE: Inteligência Híbrida. Precisão Industrial.</p>
+        </header>
+
+        <!-- Main Logo Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-[#004E64] border-b-2 border-[#A2FF86] pb-2 mb-6">Logo Principal</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Logo on Light Background -->
+                <div class="card p-8 flex flex-col items-center justify-center bg-white">
+                    <h3 class="font-semibold mb-4">Aplicação Principal (Fundo Claro)</h3>
+                    <svg class="logo-svg" viewBox="0 0 220 50" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="gradV" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#A2FF86; stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#A2FF86; stop-opacity:0.6" />
+                            </linearGradient>
+                        </defs>
+                        <!-- E -->
+                        <path d="M0 0 H 40 V 50 H 0 V 0 M 0 23 H 30 V 27 H 0 Z" fill="#004E64"/>
+                        <!-- V (Stylized) -->
+                        <path d="M80 0 L 95 50 L 110 0 L 100 0 L 95 15 L 90 0 Z" fill="url(#gradV)"/>
+                        <path d="M80 0 L 95 50 L 100 50 L 115 0 L 125 0 L 100 60 L 75 0 Z" fill="#004E64" transform="translate(15, -5) scale(0.9)"/>
+                        <!-- E -->
+                        <path d="M150 0 H 190 V 50 H 150 V 0 M 150 23 H 180 V 27 H 150 Z" fill="#004E64" transform="translate(30,0)"/>
+                    </svg>
+                    <p class="text-xs text-center mt-4 text-gray-500">O "V" estilizado com gradiente verde-limão simboliza o fluxo de dados e a inovação da IA.</p>
+                </div>
+                <!-- Logo on Dark Background -->
+                <div class="card p-8 flex flex-col items-center justify-center bg-[#2E2E2E]">
+                    <h3 class="font-semibold mb-4 text-white">Aplicação em Fundo Escuro</h3>
+                     <svg class="logo-svg" viewBox="0 0 220 50" xmlns="http://www.w3.org/2000/svg">
+                        <!-- E -->
+                        <path d="M0 0 H 40 V 50 H 0 V 0 M 0 23 H 30 V 27 H 0 Z" fill="#F2F7F5"/>
+                        <!-- V (Stylized) -->
+                        <path d="M80 0 L 95 50 L 110 0 L 100 0 L 95 15 L 90 0 Z" fill="#A2FF86"/>
+                        <path d="M80 0 L 95 50 L 100 50 L 115 0 L 125 0 L 100 60 L 75 0 Z" fill="#F2F7F5" transform="translate(15, -5) scale(0.9)"/>
+                        <!-- E -->
+                        <path d="M150 0 H 190 V 50 H 150 V 0 M 150 23 H 180 V 27 H 150 Z" fill="#F2F7F5" transform="translate(30,0)"/>
+                    </svg>
+                    <p class="text-xs text-center mt-4 text-gray-400">Alta legibilidade e contraste, ideal para interfaces de dashboards e aplicativos.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Concept -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-[#004E64] border-b-2 border-[#A2FF86] pb-2 mb-6">Conceito e Simbolismo</h2>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <p class="mb-4">A logo de EVE foi construída sobre três pilares:</p>
+                <ul class="list-disc list-inside space-y-3">
+                    <li><strong class="text-[#004E64]">Tipografia Robusta:</strong> Inspirada em fontes como Rajdhani e Orbitron, a fonte customizada possui traços geométricos e retos, transmitindo a precisão e a força do ambiente industrial. O espaçamento amplo entre as letras (kerning) garante um visual limpo, tecnológico e legível.</li>
+                    <li><strong class="text-[#004E64]">O "V" como Conector:</strong> O "V" é o elemento central e foi desenhado como uma seta aberta e ascendente. Ele simboliza múltiplos conceitos:
+                        <ul class="list-decimal list-inside ml-6 mt-2 space-y-1 text-sm">
+                           <li><strong>Direção e Evolução:</strong> Aponta para cima e para frente, representando o avanço e a melhoria contínua.</li>
+                           <li><strong>Fluxo de Dados:</strong> A forma aberta sugere um canal por onde os dados fluem, conectando o físico (sensores) ao digital (IA).</li>
+                           <li><strong>Inteligência:</strong> O destaque em verde-limão o associa diretamente à inteligência artificial e aos insights gerados.</li>
+                        </ul>
+                    </li>
+                     <li><strong class="text-[#004E64]">Inteligência Híbrida:</strong> As duas letras "E", simétricas e estáveis, representam os pilares fundamentais da EVE: de um lado, a <span class="font-bold">Engenharia</span> e os dados brutos; do outro, a <span class="font-bold">Experiência</span> humana. O "V" no centro é a ponte que une esses dois mundos.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Monochrome Version -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-[#004E64] border-b-2 border-[#A2FF86] pb-2 mb-6">Versões Monocromáticas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Black on White -->
+                <div class="card p-8 flex flex-col items-center justify-center bg-white">
+                    <h3 class="font-semibold mb-4">Positiva (Preto sobre Branco)</h3>
+                    <svg class="logo-svg" viewBox="0 0 220 50" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0 H 40 V 50 H 0 V 0 M 0 23 H 30 V 27 H 0 Z" fill="#000000"/>
+                        <path d="M80 0 L 95 50 L 100 50 L 115 0 L 125 0 L 100 60 L 75 0 Z" fill="#000000" transform="translate(15, -5) scale(0.9)"/>
+                        <path d="M150 0 H 190 V 50 H 150 V 0 M 150 23 H 180 V 27 H 150 Z" fill="#000000" transform="translate(30,0)"/>
+                    </svg>
+                     <p class="text-xs text-center mt-4 text-gray-500">Ideal para documentos técnicos, relatórios e impressão.</p>
+                </div>
+                <!-- White on Black -->
+                <div class="card p-8 flex flex-col items-center justify-center bg-black">
+                    <h3 class="font-semibold mb-4 text-white">Negativa (Branco sobre Preto)</h3>
+                     <svg class="logo-svg" viewBox="0 0 220 50" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0 H 40 V 50 H 0 V 0 M 0 23 H 30 V 27 H 0 Z" fill="#FFFFFF"/>
+                        <path d="M80 0 L 95 50 L 100 50 L 115 0 L 125 0 L 100 60 L 75 0 Z" fill="#FFFFFF" transform="translate(15, -5) scale(0.9)"/>
+                        <path d="M150 0 H 190 V 50 H 150 V 0 M 150 23 H 180 V 27 H 150 Z" fill="#FFFFFF" transform="translate(30,0)"/>
+                    </svg>
+                     <p class="text-xs text-center mt-4 text-gray-400">Para aplicações em superfícies escuras e etiquetas técnicas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Color Palette Section -->
+        <section>
+            <h2 class="text-2xl font-bold text-[#004E64] border-b-2 border-[#A2FF86] pb-2 mb-6">Paleta de Cores</h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+                <!-- Azul Petróleo -->
+                <div>
+                    <div class="color-swatch" style="background-color: #004E64;"></div>
+                    <h4 class="font-bold mt-2">Azul Petróleo</h4>
+                    <p class="text-sm">#004E64</p>
+                    <p class="text-xs text-gray-600">Confiança, Análise</p>
+                </div>
+                <!-- Verde-Limão -->
+                <div>
+                    <div class="color-swatch" style="background-color: #A2FF86;"></div>
+                    <h4 class="font-bold mt-2">Verde-Limão</h4>
+                    <p class="text-sm">#A2FF86</p>
+                    <p class="text-xs text-gray-600">Inovação, IA, Insights</p>
+                </div>
+                <!-- Cinza Grafite -->
+                <div>
+                    <div class="color-swatch" style="background-color: #2E2E2E;"></div>
+                    <h4 class="font-bold mt-2">Cinza Grafite</h4>
+                    <p class="text-sm">#2E2E2E</p>
+                    <p class="text-xs text-gray-600">Robustez, Indústria</p>
+                </div>
+                <!-- Branco Gelo -->
+                 <div>
+                    <div class="color-swatch border border-gray-200" style="background-color: #F2F7F5;"></div>
+                    <h4 class="font-bold mt-2">Branco Gelo</h4>
+                    <p class="text-sm">#F2F7F5</p>
+                    <p class="text-xs text-gray-600">Clareza, Dados</p>
+                </div>
+                <!-- Laranja Sutil -->
+                <div>
+                    <div class="color-swatch" style="background-color: #FF9F1C;"></div>
+                    <h4 class="font-bold mt-2">Laranja Sutil</h4>
+                    <p class="text-sm">#FF9F1C</p>
+                    <p class="text-xs text-gray-600">Ação, Alerta</p>
+                </div>
+            </div>
+        </section>
+        
+    </div>
+
+</body>
+</html>

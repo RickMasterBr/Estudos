@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVE - Inteligência Híbrida para Manutenção Industrial</title>
+    
+    <!-- Chosen Palette: EVE Official Palette (Azul Petróleo, Verde-Limão, Cinza Grafite, Branco Gelo, Laranja Sutil) -->
+    <!-- Application Structure Plan: A single-page application designed for a narrative user flow. It starts with a strong value proposition (Hero), explains the "how" (A Solução), provides a "wow" factor with a live demo (Demonstração IA), justifies the investment (Diferenciais), and ends with a clear call to action (Contato). This structure guides the user from awareness to conversion logically, with the interactive AI demo serving as the central engagement point to prove the platform's capability. -->
+    <!-- Visualization & Content Choices: The core interactive element is the Gemini AI-powered part analyzer. Goal: Demonstrate capability. Method: Image upload calling a vision model. Interaction: User uploads an image, clicks a button, receives a structured JSON analysis displayed in a clear card. Justification: This provides tangible proof of EVE's "intelligence" claim, moving beyond marketing text into a real experience. Other elements are informational cards and sections, using icons and strong typography to organize content clearly. Library: Vanilla JS for interaction and API call. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F2F7F5;
+            color: #2E2E2E;
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6, .font-rajdhani {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .eve-logo-v {
+            fill: #A2FF86;
+        }
+        .btn-primary {
+            background-color: #A2FF86;
+            color: #2E2E2E;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(162, 255, 134, 0.4);
+        }
+        .hero-bg {
+             background: linear-gradient(45deg, rgba(242, 247, 245, 0.95), rgba(242, 247, 245, 0.95)), url('https://placehold.co/1920x1080/004e64/2e2e2e?text=EVE');
+             background-size: cover;
+             background-position: center;
+             position: relative;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #F2F7F5, transparent);
+        }
+        .upload-box {
+            border: 2px dashed #A2FF86;
+        }
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #F2F7F5;
+            border-bottom-color: #A2FF86;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Seção 1: Header -->
+    <header id="header" class="bg-[#F2F7F5]/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#hero" class="flex items-center space-x-2">
+                <svg class="h-8 w-auto" viewBox="0 0 130 30" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="25" font-family="Rajdhani, sans-serif" font-size="30" font-weight="700" fill="#004E64">E</text>
+                    <path d="M45 0 L55 30 L65 0 L60 0 L55 10 L50 0 Z" class="eve-logo-v"/>
+                    <text x="75" y="25" font-family="Rajdhani, sans-serif" font-size="30" font-weight="700" fill="#004E64">E</text>
+                </svg>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#solucao" class="text-[#004E64] font-semibold hover:text-[#A2FF86] transition-colors">Solução</a>
+                <a href="#demonstracao" class="text-[#004E64] font-semibold hover:text-[#A2FF86] transition-colors">Demonstração IA</a>
+                <a href="#diferenciais" class="text-[#004E64] font-semibold hover:text-[#A2FF86] transition-colors">Diferenciais</a>
+                <a href="#contato" class="text-[#004E64] font-semibold hover:text-[#A2FF86] transition-colors">Contato</a>
+            </div>
+            <a href="#contato" class="hidden md:inline-block btn-primary font-bold font-rajdhani text-lg px-6 py-2 rounded-lg">
+                Agendar Demonstração
+            </a>
+            <button id="mobile-menu-button" class="md:hidden text-[#004E64] text-3xl">☰</button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#F2F7F5] p-4">
+             <a href="#solucao" class="block text-center py-2 text-[#004E64] font-semibold">Solução</a>
+             <a href="#demonstracao" class="block text-center py-2 text-[#004E64] font-semibold">Demonstração IA</a>
+             <a href="#diferenciais" class="block text-center py-2 text-[#004E64] font-semibold">Diferenciais</a>
+             <a href="#contato" class="block text-center py-2 text-[#004E64] font-semibold">Contato</a>
+             <a href="#contato" class="block mt-4 text-center btn-primary font-bold font-rajdhani text-lg px-6 py-2 rounded-lg">
+                Agendar Demonstração
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção 2: Hero -->
+        <section id="hero" class="hero-bg min-h-screen flex items-center pt-20">
+            <div class="container mx-auto px-6 text-center z-10">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-[#004E64] leading-tight">
+                    Mais que prever.<br>Entender. Corrigir. Evoluir.
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-[#2E2E2E]">
+                    A plataforma de inteligência híbrida que transforma sua manutenção em um motor de produtividade. Conectamos dados, tecnologia e a experiência da sua equipe para prever falhas antes que elas aconteçam.
+                </p>
+                <a href="#solucao" class="mt-8 inline-block btn-primary font-bold font-rajdhani text-xl px-10 py-4 rounded-lg">
+                    Conheça a Solução EVE
+                </a>
+            </div>
+        </section>
+        
+        <!-- Seção 3: A Solução EVE -->
+        <section id="solucao" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                     <h2 class="text-3xl md:text-4xl font-bold text-[#004E64]">Uma Plataforma. Três Pilares de Inteligência.</h2>
+                     <p class="mt-2 text-lg text-[#2E2E2E]">Nossa abordagem integrada garante uma análise completa e precisa do chão de fábrica à decisão estratégica.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Coluna 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow">
+                        <div class="text-5xl mb-4 text-[#004E64]">📡</div>
+                        <h3 class="text-2xl font-bold text-[#004E64] mb-2">Automação e Sensores</h3>
+                        <p>Coletamos dados em tempo real de seus ativos através de sensores de alta precisão, garantindo uma visão completa e contínua da saúde da sua operação.</p>
+                    </div>
+                    <!-- Coluna 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow">
+                        <div class="text-5xl mb-4 text-[#004E64]">👷</div>
+                        <h3 class="text-2xl font-bold text-[#004E64] mb-2">Conhecimento de Campo</h3>
+                        <p>Valorizamos a experiência humana. Nossa plataforma permite que sua equipe insira dados de inspeções, enriquecendo a análise com o contexto que só um técnico experiente possui.</p>
+                    </div>
+                    <!-- Coluna 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow">
+                        <div class="text-5xl mb-4 text-[#004E64]">🧠</div>
+                        <h3 class="text-2xl font-bold text-[#004E64] mb-2">Análise e Decisão</h3>
+                        <p>Nossa IA processa a combinação de dados para gerar insights preditivos, diagnósticos precisos e recomendações claras, transformando dados em ações.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Demonstração Interativa -->
+        <section id="demonstracao" class="py-20 bg-[#2E2E2E]">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                     <h2 class="text-3xl md:text-4xl font-bold text-white">Nossa Inteligência em Ação</h2>
+                     <p class="mt-2 text-lg text-[#F2F7F5]">Faça o upload da foto de um componente industrial (ex: rolamento, engrenagem) e veja como nossa IA, potencializada pela tecnologia Gemini, pode fornecer uma análise preliminar de seu estado.</p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <!-- Upload Area -->
+                    <div id="upload-area" class="upload-box p-8 rounded-xl flex flex-col items-center justify-center text-center text-white h-96">
+                        <input type="file" id="file-input" class="hidden" accept="image/*">
+                        <img id="image-preview" src="" class="hidden max-h-48 mb-4 rounded-lg">
+                        <div id="upload-placeholder">
+                            <div class="text-6xl text-[#A2FF86]">📤</div>
+                             <p class="mt-4 text-xl">Arraste uma imagem aqui ou</p>
+                             <button id="browse-btn" class="mt-2 text-[#A2FF86] font-bold underline">clique para selecionar</button>
+                        </div>
+                         <button id="analyze-btn" class="hidden mt-4 btn-primary font-bold font-rajdhani text-lg px-8 py-3 rounded-lg">
+                            Analisar Peça
+                        </button>
+                    </div>
+                    <!-- Result Area -->
+                    <div id="result-area" class="bg-[#004E64] p-8 rounded-xl text-white min-h-96 flex flex-col justify-center">
+                        <div id="loader" class="hidden self-center">
+                            <div class="loader"></div>
+                            <p class="mt-4 text-center">Analisando imagem...</p>
+                        </div>
+                        <div id="result-content" class="hidden">
+                            <h3 class="text-2xl font-bold mb-4 text-[#A2FF86]">Resultado da Análise</h3>
+                            <div class="space-y-3">
+                                <p><strong>Peça Identificada:</strong> <span id="res-peca"></span></p>
+                                <p><strong>Estado Preliminar:</strong> <span id="res-estado"></span></p>
+                                <p><strong>Recomendação EVE:</strong> <span id="res-rec"></span></p>
+                                <p><strong>Nível de Confiança:</strong> <span id="res-confianca" class="font-bold text-[#A2FF86]"></span></p>
+                            </div>
+                             <p class="text-xs mt-6 text-gray-300"><em>Disclaimer: Esta é uma análise demonstrativa. A plataforma EVE completa utiliza dados de sensores e histórico para maior precisão.</em></p>
+                             <button id="reset-btn" class="mt-4 text-[#A2FF86] font-bold underline">Analisar outra peça</button>
+                        </div>
+                         <div id="result-placeholder" class="text-center text-gray-300">
+                             <div class="text-5xl mb-4">📊</div>
+                             <p>O resultado da sua análise aparecerá aqui.</p>
+                         </div>
+                         <div id="error-message" class="hidden text-center text-yellow-300">
+                            <p>Desculpe, não foi possível analisar a imagem. Tente novamente com outra imagem ou mais tarde.</p>
+                            <button id="reset-error-btn" class="mt-4 text-[#A2FF86] font-bold underline">Tentar novamente</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 5: Diferenciais -->
+        <section id="diferenciais" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                     <h2 class="text-3xl md:text-4xl font-bold text-[#004E64]">A Evolução da Manutenção</h2>
+                     <p class="mt-2 text-lg text-[#2E2E2E]">Deixe de apagar incêndios e passe a antecipar o futuro.</p>
+                </div>
+                 <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="border-2 border-gray-200 p-8 rounded-xl text-center">
+                         <div class="text-4xl font-bold text-[#FF9F1C] mb-4">🔥</div>
+                         <h3 class="text-2xl font-bold text-[#2E2E2E]">Corretivo</h3>
+                         <p class="font-semibold text-lg my-2">"Reage ao problema"</p>
+                         <p class="text-sm">Custos elevados, paradas não planejadas e produção imprevisível. O modelo reativo é o mais caro de todos.</p>
+                    </div>
+                     <!-- Card 2 -->
+                    <div class="border-2 border-gray-300 p-8 rounded-xl text-center">
+                         <div class="text-4xl font-bold text-[#004E64] mb-4">📅</div>
+                         <h3 class="text-2xl font-bold text-[#2E2E2E]">Preventivo</h3>
+                         <p class="font-semibold text-lg my-2">"Age por cronograma"</p>
+                         <p class="text-sm">Mais seguro, porém troca peças boas e gera custos desnecessários, sem considerar a condição real do ativo.</p>
+                    </div>
+                     <!-- Card 3 -->
+                    <div class="border-4 border-[#A2FF86] p-8 rounded-xl text-center bg-white shadow-2xl scale-105">
+                         <div class="text-4xl font-bold text-[#A2FF86] mb-4">📈</div>
+                         <h3 class="text-2xl font-bold text-[#004E64]">Preditivo (EVE)</h3>
+                         <p class="font-semibold text-lg my-2">"Age por condição real"</p>
+                         <p class="text-sm">Maximiza a vida útil dos componentes, reduz custos e aumenta a confiabilidade. A manutenção se torna uma decisão estratégica.</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Seção 6: CTA Final e Contato -->
+        <section id="contato" class="py-20 bg-[#004E64]">
+             <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-3xl md:text-4xl font-bold text-white">Pronto para transformar sua manutenção?</h2>
+                 <p class="mt-2 text-lg text-[#F2F7F5] max-w-xl mx-auto">Deixe seu contato e um de nossos especialistas irá agendar uma demonstração completa e personalizada para sua indústria.</p>
+                <form class="mt-8 max-w-lg mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <input type="text" placeholder="Seu Nome" class="p-3 rounded-lg bg-white text-[#2E2E2E] w-full" required>
+                        <input type="text" placeholder="Sua Empresa" class="p-3 rounded-lg bg-white text-[#2E2E2E] w-full" required>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <input type="email" placeholder="Seu E-mail" class="p-3 rounded-lg bg-white text-[#2E2E2E] w-full" required>
+                        <input type="tel" placeholder="Seu Telefone" class="p-3 rounded-lg bg-white text-[#2E2E2E] w-full">
+                    </div>
+                    <button type="submit" class="w-full btn-primary font-bold font-rajdhani text-xl px-10 py-4 rounded-lg">
+                        AGENDAR MINHA DEMONSTRAÇÃO
+                    </button>
+                </form>
+             </div>
+        </section>
+    </main>
+
+    <!-- Seção 7: Footer -->
+    <footer class="bg-[#2E2E2E] py-12 text-[#F2F7F5]">
+        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-center md:text-left">
+            <div>
+                 <a href="#hero" class="inline-block mb-4">
+                     <svg class="h-8 w-auto" viewBox="0 0 130 30" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="25" font-family="Rajdhani, sans-serif" font-size="30" font-weight="700" fill="#F2F7F5">E</text>
+                        <path d="M45 0 L55 30 L65 0 L60 0 L55 10 L50 0 Z" fill="#A2FF86"/>
+                        <text x="75" y="25" font-family="Rajdhani, sans-serif" font-size="30" font-weight="700" fill="#F2F7F5">E</text>
+                    </svg>
+                 </a>
+                 <p class="text-sm">Inteligência Híbrida. Precisão Industrial.</p>
+            </div>
+             <div>
+                <h4 class="font-bold font-rajdhani text-lg mb-2">Contato</h4>
+                <p class="text-sm">Avenida Industrial, 123 - Distrito Industrial</p>
+                <p class="text-sm">contato@eve-ai.com</p>
+                <p class="text-sm">+55 (11) 98765-4321</p>
+            </div>
+             <div>
+                 <h4 class="font-bold font-rajdhani text-lg mb-2">Siga-nos</h4>
+                 <a href="#" class="text-[#A2FF86] hover:underline">LinkedIn</a>
+             </div>
+        </div>
+        <div class="text-center text-xs text-gray-400 mt-8 pt-8 border-t border-gray-700">
+            &copy; 2025 EVE. Todos os direitos reservados.
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Mobile Menu
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // File Upload & Gemini AI Interaction
+    const fileInput = document.getElementById('file-input');
+    const browseBtn = document.getElementById('browse-btn');
+    const analyzeBtn = document.getElementById('analyze-btn');
+    const uploadArea = document.getElementById('upload-area');
+    const imagePreview = document.getElementById('image-preview');
+    const uploadPlaceholder = document.getElementById('upload-placeholder');
+    
+    const resultArea = document.getElementById('result-area');
+    const loader = document.getElementById('loader');
+    const resultContent = document.getElementById('result-content');
+    const resultPlaceholder = document.getElementById('result-placeholder');
+    const errorMessage = document.getElementById('error-message');
+    
+    const resetBtn = document.getElementById('reset-btn');
+    const resetErrorBtn = document.getElementById('reset-error-btn');
+
+    let base64ImageData = null;
+
+    browseBtn.addEventListener('click', () => fileInput.click());
+    
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            handleFile(file);
+        }
+    });
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    uploadArea.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const file = dt.files[0];
+        if (file) {
+            handleFile(file);
+        }
+    });
+
+    function handleFile(file) {
+        if (!file.type.startsWith('image/')) {
+            alert('Por favor, selecione um arquivo de imagem.');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            base64ImageData = reader.result.split(',')[1];
+            imagePreview.src = reader.result;
+            imagePreview.classList.remove('hidden');
+            uploadPlaceholder.classList.add('hidden');
+            analyzeBtn.classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function resetUI() {
+        base64ImageData = null;
+        fileInput.value = '';
+        imagePreview.classList.add('hidden');
+        imagePreview.src = '';
+        uploadPlaceholder.classList.remove('hidden');
+        analyzeBtn.classList.add('hidden');
+        
+        loader.classList.add('hidden');
+        resultContent.classList.add('hidden');
+        errorMessage.classList.add('hidden');
+        resultPlaceholder.classList.remove('hidden');
+    }
+
+    resetBtn.addEventListener('click', resetUI);
+    resetErrorBtn.addEventListener('click', resetUI);
+
+    analyzeBtn.addEventListener('click', async () => {
+        if (!base64ImageData) {
+            alert('Nenhuma imagem selecionada.');
+            return;
+        }
+
+        resultPlaceholder.classList.add('hidden');
+        loader.classList.remove('hidden');
+        resultContent.classList.add('hidden');
+        errorMessage.classList.add('hidden');
+
+        try {
+            const promptText = "Você é EVE, um assistente especialista em manutenção industrial preditiva. Sua função é analisar a imagem de um componente de máquina fornecida. Com base na imagem, forneça uma análise concisa em formato JSON. O JSON deve conter os seguintes campos: 'peca_identificada' (o nome provável do componente), 'estado_preliminar' (descrição de sinais de desgaste, corrosão, etc.), 'recomendacao_eve' (uma ação recomendada), e 'nivel_confianca' (um número de 0 a 100). Responda apenas com o objeto JSON.";
+
+            const payload = {
+                contents: [
+                    {
+                        parts: [
+                            { text: promptText },
+                            {
+                                inlineData: {
+                                    mimeType: "image/jpeg",
+                                    data: base64ImageData
+                                }
+                            }
+                        ]
+                    }
+                ]
+            };
+            
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${apiKey}`;
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`API error: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            
+            if (result.candidates && result.candidates.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                const cleanedText = text.replace(/```json|```/g, '').trim();
+                const data = JSON.parse(cleanedText);
+
+                document.getElementById('res-peca').textContent = data.peca_identificada || 'Não identificado';
+                document.getElementById('res-estado').textContent = data.estado_preliminar || 'Não foi possível determinar';
+                document.getElementById('res-rec').textContent = data.recomendacao_eve || 'Análise inconclusiva';
+                document.getElementById('res-confianca').textContent = `${data.nivel_confianca}%` || 'N/A';
+
+                loader.classList.add('hidden');
+                resultContent.classList.remove('hidden');
+            } else {
+                throw new Error("Resposta da API inválida ou vazia.");
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            loader.classList.add('hidden');
+            errorMessage.classList.remove('hidden');
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>

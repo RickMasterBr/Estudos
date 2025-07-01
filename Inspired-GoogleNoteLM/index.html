@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotebookLM - Understand Any Subject</title>
+    
+    <!-- Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- Global Styles & Resets --- */
+        :root {
+            --text-color: #1a1a1a;
+            --background-color: #ffffff;
+            --primary-button-bg: #000000;
+            --primary-button-text: #ffffff;
+            --gradient-start: #34d399; /* Green */
+            --gradient-end: #8b5cf6;   /* Purple */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Header / Navigation --- */
+        .main-header {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo-icon {
+            font-weight: 800;
+            display: inline-block;
+            border: 2px solid var(--text-color);
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 24px;
+            border-radius: 6px;
+            transform: skew(-10deg);
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a, .social-icons a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .social-icons a:hover {
+            color: var(--gradient-end);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            font-size: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--text-color);
+            background-color: transparent;
+            color: var(--text-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-color);
+            color: var(--background-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-headline {
+            font-size: 6rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subheading {
+            font-size: 1.25rem;
+            max-width: 600px;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-button-bg);
+            color: var(--primary-button-text);
+            padding: 16px 32px;
+            font-size: 1rem;
+        }
+        
+        .btn-primary:hover {
+            opacity: 0.85;
+        }
+
+        /* --- Feature Section --- */
+        .feature-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .feature-headline {
+            font-size: 3rem;
+            font-weight: 700;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .hero-headline {
+                font-size: 4.5rem;
+            }
+            .feature-headline {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hiding links on smaller screens for simplicity */
+            }
+            
+            .main-header {
+                padding: 16px 0;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero-headline {
+                font-size: 3.5rem;
+            }
+            
+            .hero-subheading {
+                font-size: 1.1rem;
+            }
+            
+            .feature-section {
+                padding: 60px 0;
+            }
+            
+            .feature-headline {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="main-header container">
+        <a href="#" class="logo">
+            <span class="logo-icon">N</span>
+            NotebookLM
+        </a>
+        <nav class="main-nav">
+            <div class="nav-links">
+                <a href="#">Overview</a>
+                <a href="#">Plans</a>
+                <div class="social-icons">
+                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="#" aria-label="Community"><i class="fa-solid fa-robot"></i></a>
+                    <a href="#" aria-label="X/Twitter"><i class="fab fa-xing"></i></a>
+                </div>
+            </div>
+            <a href="#" class="btn btn-outline">Install App</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero container">
+            <h1 class="hero-headline">
+                Understand<br>
+                <span class="gradient-text">any subject</span>
+            </h1>
+            <p class="hero-subheading">
+                Your research and analysis partner, based on the information you trust and created with the latest Gemini models.
+            </p>
+            <a href="#" class="btn btn-primary">Try NotebookLM</a>
+        </section>
+
+        <!-- Second Feature Section -->
+        <section class="feature-section container">
+            <h2 class="feature-headline">
+                Your personalized research assistant with AI technology
+            </h2>
+        </section>
+    </main>
+
+</body>
+</html>
