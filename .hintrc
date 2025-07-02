@@ -16,6 +16,14 @@
       {
         "document-title": "off"
       }
-    ]
+    ],
+    "axe/structure": [
+      "default",
+      {
+        "list": "off"
+      }
+    ],
+    "disown-opener": "off",
+    "axe/forms": "off"
   }
 }

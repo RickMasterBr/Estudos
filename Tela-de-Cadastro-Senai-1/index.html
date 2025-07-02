@@ -1,0 +1,131 @@
+<html>
+
+<head>
+    <title>Minha tela de Cadastro</title>
+</head>
+
+<body>
+    <form>
+        <section>
+            <h1 class="titulo">Cadastro de Pessoas</h1>
+            <div class="nomeDiv">
+                Nome <input class="nome" type="text" name="nome" size="10"/><br/>
+            </div> 
+
+            <div class="RGDiv">
+                RG: <input /><br/> 
+            </div>
+
+            <div class="CPFDiv">
+                CPF: <input /><br/> 
+            </div>
+
+            <div class="idadeDiv"">
+                Idade <input type="number" name="idade" min="0" max="120" /><br/>
+            </div>
+
+            <div class="cursoDiv">
+                Curso <select>
+                    <option value="tecnologia">Tecnologia</option>
+                    <option value="engenharia">Engenharia</option>
+                    <option value="medicina">Medicina</option>
+                    <option value="direito">Direito</option>
+                </select>
+            </div>
+
+            <div class="horarioDiv">
+                Horario 
+                <input type="checkbox" name="horario" value="manha"/> Manha
+                <input type="checkbox" name="horario" value="tarde"/> Tarde
+                <input type="checkbox" name="horario" value="noite"/> Noite
+            </div>
+
+            <div class="turnoDiv">
+                Turno
+                <input type="radio" name="turno" value="matutino"/> Matutino
+                <input type="radio" name="turno" value="vespertino"/> Vespertino
+                <input type="radio" name="turno" value="noturno"/> Noturno
+            </div>
+
+            Estado: <input /><br/> 
+            Genero: <input /><br/> 
+            Aceito os termos: <input type="checkbox" /><br/>
+            <input type="submit" value="Novo" />
+            <input type="submit" value="Cancelar" />
+            <input type="submit" value="Salvar" />
+            <input type="submit" value="Pesquisar" /> 
+            <br/>
+            <br/>
+            <button class="botao" type="button">Botão</button>
+        </section>
+    </form>
+</body>
+
+</html>
+
+<style>
+    .botao{
+        color:aqua;
+        background-color: black;
+        border-radius: 30%;
+        padding: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+
+    }
+    .titulo {
+        color: blue;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .nome {
+        color: red;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .nomeDiv {
+        background-color: yellow;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .RGDiv {
+        background-color: lightgreen;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .CPFDiv {
+        background-color: lightcoral;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .idadeDiv {
+        background-color: lightblue;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .cursoDiv {
+        background-color: lightgoldenrodyellow;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .horarioDiv {
+        background-color: lightgray;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .turnoDiv {
+        background-color: lightpink;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+</style>
