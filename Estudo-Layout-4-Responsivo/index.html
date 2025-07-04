@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Introdução CSS InLine</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="titulo">Como trabalhar o CSS?</h1>
+            <p class="paragrafo-um">
+                Existem duas formas de trabalhar o CSS:<br/>
+                InLine: O CSS é aplicado diretamente no arquivo HTML.<br/>
+                OutLine: O CSS é aplicado através de um arquivo externo, que é vinculado ao HTML.<br/>
+            </p>
+            <button class="botao-um" type="button">Clique aqui AGORA!</button> <br/> <br/>
+            
+            <img
+            src="everaldo.jpg"
+            alt="Imagem de Everaldo"
+            width="100"
+            height="200"
+            />
+
+            <img
+            src="rian.webp"
+            alt="Imagem de Ryan"
+            width="200"
+            height="200"
+            />
+
+            <img
+            src="luis.png"
+            alt="Imagem de luiz"
+            width="200"
+            height="200"
+            />
+
+        </div>
+        <div>
+            <p class="paragrafo-dois">
+                O CSS InLine é utilizado para aplicar estilos diretamente em elementos HTML, como cores, tamanhos e fontes. É uma forma rápida de estilizar, mas não é recomendada para projetos maiores devido à dificuldade de manutenção.
+            </p>
+            <button class="botao-dois" type="button">Clique aqui também!</button>
+        </div>
+
+        <div>
+            <p class="paragrafo-tres">
+                O CSS OutLine é utilizado para aplicar estilos através de um arquivo externo, que é vinculado ao HTML. É a forma mais recomendada para projetos maiores, pois permite uma melhor organização e manutenção do código.
+            </p>
+            <button class="botao-tres" type="button">Clique aqui outra vez!</button>
+        </div>
+    </body>
+
+    <style>
+        body
+        {
+            background-color: blueviolet;
+            color: yellow;
+            
+        }
+        button{
+            color: lightgreen;
+            background-color: red;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+        img {
+            border: 5px solid black;
+            border-radius: 100px;
+        }
+        p{
+            background-color: black;
+        }
+        h1{
+            color: orange;
+            font-family: Monstsserat, sans-serif;
+            text-align: center;
+            font-size: 50px;
+            font-weight: bold;
+        }
+    </style>
