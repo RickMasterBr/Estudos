@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Efeito Inclinação 3D</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="glass-card">
+      <p>Este é o efeito de inclinação 3D criado com HTML e CSS</p>
+    </div>
+
+    <script>
+      // 1. Seleciona o nosso cartão de vidro
+      const card = document.querySelector(".glass-card");
+
+      // 2. Define a intensidade do efeito de inclinação
+      const intensity = 20;
+
+      // 3. Adiciona um "ouvinte" para o evento de mover o mouse sobre o cartão
+      card.addEventListener("mousemove", (event) => {
+        // Obtém as dimensões e a posição do cartão na página
+        const rect = card.getBoundingClientRect();
+        const cardWidth = rect.width;
+        const cardHeight = rect.height;
+
+        // Calcula a posição do mouse DENTRO do cartão (de 0 a largura/altura do cartão)
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
+
+        // Calcula a rotação em graus para os eixos X e Y
+        // O cálculo ((mouseY / cardHeight) - 0.5) resulta num valor entre -0.5 e 0.5
+        // Multiplicamos pela intensidade para ampliar o efeito
+        const rotateX = intensity * (mouseY / cardHeight - 0.5) * -1;
+        const rotateY = intensity * (mouseX / cardWidth - 0.5);
+
+        // Aplica a transformação 3D ao cartão
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      // 4. Adiciona um "ouvinte" para quando o mouse SAI do cartão
+      card.addEventListener("mouseleave", () => {
+        // Reseta a transformação, fazendo o cartão voltar à posição original suavemente
+        card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+      });
+    </script>
+  </body>
+</html>
