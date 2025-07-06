@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Estudo de Efeito de Fluxo</title>
+  </head>
+  <body>
+    <div class="fluxograma">
+      <div id="inicio" class="etapa">Início</div>
+      <svg class="conector" id="conector1">
+        <line x1="50% y1=0" x2="50%" y2="100%"></line>
+      </svg>
+      <div id="decisao" class="etapa">Gostou do Exemplo?</div>
+      <svg class="conector" id="conector2">
+        <line x1="50%" y1="0" x2="50%" y2="100%"></line>
+      </svg>
+
+      <div class="resultados">
+        <div id="resultado-sim" class="etapa final">Sim! Ótimo!</div>
+        <div id="resultado-nao" class="etapa final">Não. Que pena.</div>
+      </div>
+
+      <div class="controles">
+        <button id="btn-sim">Sim</button>
+        <button id="btn-nao">Não</button>
+        <button id="btn-reiniciar">Reiniciar</button>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  .etapa {
+    border: 2px solid #333;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    opacity: 0.3; /* Começam esmaecidos */
+    transition: all 0.5s ease;
+  }
+  .etapa.ativa {
+    border-color: #ff9900;
+    background-color: #fffbe6;
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  .conector {
+    height: 50px;
+    width: 100%;
+  }
+  .conector line {
+    stroke: #333;
+    stroke-width: 2;
+    stroke-dasharray: 5; /* Para um efeito tracejado */
+    animation: animar-fluxo 1s linear infinite;
+    opacity: 0.3;
+  }
+  .conector.ativa line {
+    stroke: #ff9900;
+    opacity: 1;
+  }
+  @keyframes animar-fluxo {
+    to {
+      stroke-dashoffset: -10;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const inicio = document.getElementById("inicio");
+    const decisao = document.getElementById("decisao");
+    const resultadoSim = document.getElementById("resultado-sim");
+    const resultadoNao = document.getElementById("resultado-nao");
+
+    const conector1 = document.getElementById("conector1");
+    const conector2 = document.getElementById("conector2");
+
+    const btnSim = document.getElementById("btn-sim");
+    const btnNao = document.getElementById("btn-nao");
+    const btnReiniciar = document.getElementById("btn-reiniciar");
+
+    function iniciarFluxo() {
+      reiniciarFluxo();
+      setTimeout(() => inicio.classList.add("ativa"), 500);
+      setTimeout(() => {
+        conector1.classList.add("ativa");
+        decisao.classList.add("ativa");
+      }, 1500);
+    }
+
+    function reiniciarFluxo() {
+      document.querySelectorAll(".etapa, .conector").forEach((el) => {
+        el.classList.remove("ativa");
+      });
+    }
+
+    btnSim.addEventListener("click", () => {
+      if (decisao.classList.contains("ativa")) {
+        conector2.classList.add("ativa");
+        resultadoSim.classList.add("ativa");
+      }
+    });
+
+    btnNao.addEventListener("click", () => {
+      if (decisao.classList.contains("ativa")) {
+        conector2.classList.add("ativa");
+        resultadoNao.classList.add("ativa");
+      }
+    });
+
+    btnReiniciar.addEventListener("click", iniciarFluxo);
+
+    iniciarFluxo();
+  });
+</script>
