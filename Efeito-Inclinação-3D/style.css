@@ -18,7 +18,10 @@ body {
   );
 
   /* Define uma perspectiva 3D */
-  perspective: 1000px; /* Adiciona profundidade ao efeito de inclinação
+  perspective: 1000px; // Adiciona profundidade ao efeito de inclinação
+
+  gap: 40px; /* Espaçamento entre os elementos filhos */
+  flex-direction: column; /* Organiza os elementos em coluna */
 }
 
 /* Passo 2: Estilizar o nosso cartão de vidro */
@@ -48,11 +51,23 @@ body {
 
   /* 5. Uma sombra suave para dar profundidade */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
 
-  /* 6. Define uma transição suave para quando o mouse sair do cartão */
-  transition: transform 0.5s;
+// Classe reutilizável para o efeito de inclinação 3D
+.efeito-inclinacao-3d {
+  transition: transform 0.4s ease-out; /* Animação suave de retorno */
+  transform-style: preserve-3d; /* Garante o comportamento 3D */
+}
 
-  /* 7. Garante que os elementos filhos se comportem no mesmo espaço 3D (opcional mas bom) */
-  transform-style: preserve-3d;
-
+/* Estilo de botão */
+.meu-botao {
+  padding: 15px 30px; /* Espaçamento interno do botão */
+  font-size: 18px; /* Tamanho da fonte do botão */
+  font-weight: bold; /* Negrito */
+  color: white; /* Cor do texto do botão */
+  background: #dc2743; /* Cor de fundo do botão */
+  border: none; /* Remove a borda padrão do botão */
+  border-radius: 12px; /* Bordas arredondadas do botão */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra suave para o botão */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
 }

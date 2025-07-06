@@ -7,42 +7,41 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="glass-card">
+    <div class="glass-card efeito-inclinacao-3d">
       <p>Este é o efeito de inclinação 3D criado com HTML e CSS</p>
     </div>
+    <br />
+    <button class="meu-botao efeito-inclinacao-3d">Passe o mouse aqui</button>
 
     <script>
-      // 1. Seleciona o nosso cartão de vidro
-      const card = document.querySelector(".glass-card");
+      // 1. Seleciona TODOS os elementos que devem ter o efeito
+      const elementosInclinacao = document.querySelectorAll(
+        ".efeito-inclinacao-3d"
+      );
 
       // 2. Define a intensidade do efeito de inclinação
       const intensity = 20;
 
-      // 3. Adiciona um "ouvinte" para o evento de mover o mouse sobre o cartão
-      card.addEventListener("mousemove", (event) => {
-        // Obtém as dimensões e a posição do cartão na página
-        const rect = card.getBoundingClientRect();
-        const cardWidth = rect.width;
-        const cardHeight = rect.height;
+      // 3. Percorre cada elemento encontrado e aplica a lógica
+      elementosInclinacao.forEach((element) => {
+        // Adiciona um "ouvinte" para o evento de mover o mouse sobre o elemento
+        element.addEventListener("mousemove", (event) => {
+          const rect = element.getBoundingClientRect();
+          const elementWidth = rect.width;
+          const elementHeight = rect.height;
+          const mouseX = event.clientX - rect.left;
+          const mouseY = event.clientY - rect.top;
 
-        // Calcula a posição do mouse DENTRO do cartão (de 0 a largura/altura do cartão)
-        const mouseX = event.clientX - rect.left;
-        const mouseY = event.clientY - rect.top;
+          const rotateX = intensity * (mouseY / elementHeight - 0.5) * -1;
+          const rotateY = intensity * (mouseX / elementWidth - 0.5);
 
-        // Calcula a rotação em graus para os eixos X e Y
-        // O cálculo ((mouseY / cardHeight) - 0.5) resulta num valor entre -0.5 e 0.5
-        // Multiplicamos pela intensidade para ampliar o efeito
-        const rotateX = intensity * (mouseY / cardHeight - 0.5) * -1;
-        const rotateY = intensity * (mouseX / cardWidth - 0.5);
+          element.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
 
-        // Aplica a transformação 3D ao cartão
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-
-      // 4. Adiciona um "ouvinte" para quando o mouse SAI do cartão
-      card.addEventListener("mouseleave", () => {
-        // Reseta a transformação, fazendo o cartão voltar à posição original suavemente
-        card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        // Adiciona um "ouvinte" para quando o mouse SAI do elemento
+        element.addEventListener("mouseleave", () => {
+          element.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        });
       });
     </script>
   </body>
