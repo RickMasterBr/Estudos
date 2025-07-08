@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cards Sobrepostos Scroll</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .card {
+        transition: transform 0.6s ease, opacity 0.6s ease;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <!-- Seção longa para scroll -->
+    <section class="relative h-[300vh]" id="card-section">
+      <!-- Cards fixos durante o scroll -->
+      <div class="sticky top-28 h-[80vh] flex items-center justify-center">
+        <div class="relative w-96 h-[500px]">
+          <!-- Card 3 -->
+          <div
+            id="card3"
+            class="card absolute inset-0 bg-white border-2 border-purple-300 rounded-2xl shadow-xl z-10 flex flex-col items-center justify-center p-6"
+          >
+            <h3 class="text-xl font-bold text-purple-500">Card 3</h3>
+            <p class="text-center mt-2">Último card.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            id="card2"
+            class="card absolute inset-0 bg-white border-2 border-purple-400 rounded-2xl shadow-xl z-20 flex flex-col items-center justify-center p-6"
+          >
+            <h3 class="text-xl font-bold text-purple-600">Card 2</h3>
+            <p class="text-center mt-2">Card intermediário.</p>
+          </div>
+
+          <!-- Card 1 -->
+          <div
+            id="card1"
+            class="card absolute inset-0 bg-white border-2 border-purple-500 rounded-2xl shadow-xl z-30 flex flex-col items-center justify-center p-6"
+          >
+            <h3 class="text-xl font-bold text-purple-700">Card 1</h3>
+            <p class="text-center mt-2">Card inicial.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conteúdo final -->
+    <section class="h-[100vh] flex items-center justify-center bg-white">
+      <h2 class="text-3xl font-bold">Fim da Página</h2>
+    </section>
+
+    <!-- Script com animação de sobreposição -->
+    <script>
+      const section = document.getElementById("card-section");
+      const card1 = document.getElementById("card1");
+      const card2 = document.getElementById("card2");
+      const card3 = document.getElementById("card3");
+
+      window.addEventListener("scroll", () => {
+        const rect = section.getBoundingClientRect();
+        const totalHeight = window.innerHeight * 2;
+        const scrolled = Math.min(Math.max(-rect.top, 0), totalHeight);
+        const progress = scrolled / totalHeight;
+
+        // Reset posição
+        card1.style.transform = "translateY(0)";
+        card2.style.transform = "translateY(0)";
+        card3.style.transform = "translateY(0)";
+
+        // Animação com sobreposição
+        if (progress < 0.33) {
+          card1.style.zIndex = 30;
+          card2.style.zIndex = 20;
+          card3.style.zIndex = 10;
+        } else if (progress >= 0.33 && progress < 0.66) {
+          card1.style.transform = "translateY(-120%)";
+          card1.style.zIndex = 10;
+          card2.style.zIndex = 30;
+          card3.style.zIndex = 20;
+        } else {
+          card1.style.transform = "translateY(-120%)";
+          card2.style.transform = "translateY(-120%)";
+          card1.style.zIndex = 10;
+          card2.style.zIndex = 10;
+          card3.style.zIndex = 30;
+        }
+      });
+    </script>
+  </body>
+</html>

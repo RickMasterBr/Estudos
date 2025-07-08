@@ -1,0 +1,73 @@
+/* Passo 1: Estilizar o fundo para o efeito ser visível */
+body {
+  margin: 0; /* Remove a margem padrão para evitar barras de rolagem */
+  font-family: sans-serif; /* Define uma fonte padrão */
+  min-height: 100vh; /* Garante que o body ocupe a tela inteira */
+  display: flex; /* Usa flexbox para centralizar */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+
+  /* Define um gradiente colorido para o fundo */
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+
+  /* Define uma perspectiva 3D */
+  perspective: 1000px; // Adiciona profundidade ao efeito de inclinação
+
+  gap: 40px; /* Espaçamento entre os elementos filhos */
+  flex-direction: column; /* Organiza os elementos em coluna */
+}
+
+/* Passo 2: Estilizar o nosso cartão de vidro */
+.glass-card {
+  width: 80%; /* CORRIGIDO: Define a largura como 80% da tela */
+  max-width: 500px; /* Define uma largura máxima */
+  padding: 40px; /* Adiciona espaçamento interno no cartão */
+  color: white; /* Define a cor do texto como branca */
+  text-align: center; /* Centraliza o texto */
+
+  /* --- AQUI COMEÇA O EFEITO DE VIDRO --- */
+
+  /* 1. Fundo semi-transparente */
+  background: rgba(255, 255, 255, 0.1);
+
+  /* 2. O desfoque do fundo (a propriedade principal) */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(
+    15px
+  ); /* Adicionado para maior compatibilidade com Safari */
+
+  /* 3. Bordas arredondadas */
+  border-radius: 20px;
+
+  /* 4. Uma borda subtil para definir o contorno */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  /* 5. Uma sombra suave para dar profundidade */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+// Classe reutilizável para o efeito de inclinação 3D
+.efeito-inclinacao-3d {
+  transition: transform 0.4s ease-out; /* Animação suave de retorno */
+  transform-style: preserve-3d; /* Garante o comportamento 3D */
+}
+
+/* Estilo de botão */
+.meu-botao {
+  padding: 15px 30px; /* Espaçamento interno do botão */
+  font-size: 18px; /* Tamanho da fonte do botão */
+  font-weight: bold; /* Negrito */
+  color: white; /* Cor do texto do botão */
+  background: #dc2743; /* Cor de fundo do botão */
+  border: none; /* Remove a borda padrão do botão */
+  border-radius: 12px; /* Bordas arredondadas do botão */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra suave para o botão */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Efeito Inclinação 3D</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="glass-card efeito-inclinacao-3d">
+      <p>Este é o efeito de inclinação 3D criado com HTML e CSS</p>
+    </div>
+    <br />
+    <button class="meu-botao efeito-inclinacao-3d">Passe o mouse aqui</button>
+
+    <script>
+      // 1. Seleciona TODOS os elementos que devem ter o efeito
+      const elementosInclinacao = document.querySelectorAll(
+        ".efeito-inclinacao-3d"
+      );
+
+      // 2. Define a intensidade do efeito de inclinação
+      const intensity = 20;
+
+      // 3. Percorre cada elemento encontrado e aplica a lógica
+      elementosInclinacao.forEach((element) => {
+        // Adiciona um "ouvinte" para o evento de mover o mouse sobre o elemento
+        element.addEventListener("mousemove", (event) => {
+          const rect = element.getBoundingClientRect();
+          const elementWidth = rect.width;
+          const elementHeight = rect.height;
+          const mouseX = event.clientX - rect.left;
+          const mouseY = event.clientY - rect.top;
+
+          const rotateX = intensity * (mouseY / elementHeight - 0.5) * -1;
+          const rotateY = intensity * (mouseX / elementWidth - 0.5);
+
+          element.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        // Adiciona um "ouvinte" para quando o mouse SAI do elemento
+        element.addEventListener("mouseleave", () => {
+          element.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        });
+      });
+    </script>
+  </body>
+</html>
