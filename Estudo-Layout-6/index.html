@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro do Rio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .default {
+            background: white;
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .header {
+            background: #e74c3c;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+        .menu {
+            background: #27ae60;
+            width: 100%;
+            height: 75px;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner_top {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .imgbanner {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        .body_left, .body_center, .body_right {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            min-width: 280px;
+        }
+
+        .footer {
+            background: #8e44ad;
+            width: 100%;
+            height: 50px;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="default">
+        <div class="header">
+            <div class="menu">
+            </div>
+            <div class="banner_top">
+                <img src="vascao.jpg" class="imgbanner" alt="Banner Image of Vasco Football Club">
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="body_left">
+                <h1>FLUMINENSE</h1>
+                <ul>
+                    <li>NOTÍCIAS</li>
+                    <li>ESPORTES</li>
+                    <li>CONTATO</li>
+                    <li>HOME</li>
+                </ul>
+            </div>
+            <div class="body_center">
+                <h1>NOTÍCIAS</h1>
+                <p>
+                    FLUMINENSE: O 4° MELHOR TIME DO MUNDO. SAIBA COMO FOI A CAMPANHA NA
+                    TERCEIRA DIVISÃO DO CAMPEONATO BRASILEIRO E COMO O TIME SE PREPARA PARA A VOLTA ÀS PRIMEIRAS DIVISÕES.
+                </p>
+            </div>
+            <div class="body_right">
+                <h1>BREAKING NEWS</h1>
+                <p>
+                    RENATO GAÚCHO PROVOCA TORCIDA COM GESTO OBSCENO E CRITICA CAMPANHA DO ACESSO À
+                    SÉRIE B: ESTAMOS BRIGANDO POR TÍTULOS AQUI!
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Todos os direitos reservados RR - 2025</p>
+        </div>
+    </div>
+</body>
+</html>
